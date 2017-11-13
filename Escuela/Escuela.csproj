@@ -142,9 +142,20 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="AuthContext.cs" />
+    <Compile Include="AuthContextMigrationConfiguration.cs" />
     <Compile Include="AuthRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\TeachersController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
+    <Compile Include="Entities\Course.cs" />
+    <Compile Include="Entities\Enrollment.cs" />
+    <Compile Include="Entities\Student.cs" />
+    <Compile Include="Entities\Tutor.cs" />
+    <Compile Include="GeneralErrorMessages.cs" />
+    <Compile Include="IAuthRepository.cs" />
+    <Compile Include="Mappers\CourseMapper.cs" />
+    <Compile Include="Mappers\EnrollmentMapper.cs" />
+    <Compile Include="Mappers\StudentMapper.cs" />
+    <Compile Include="Mappers\TutorMapper.cs" />
     <Compile Include="Models\TeacherModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

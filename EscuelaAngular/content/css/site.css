@@ -1,2 +1,22 @@
-﻿body {
+﻿.form-login {
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
+/*
+.load {
+    background-image: url('../images/loader.gif');
+    background-repeat: no-repeat;
+    height: 300px;
+    margin: 0 auto;
+}
+*/
+.table th, .table td 
+{
+    text-align: center;
+}
+
+.picture {
+    width: 200px;
+    height: 242px;
 }

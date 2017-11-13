@@ -1,0 +1,28 @@
+﻿using Escuela.Entities;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using System.Linq;
+using System.Web;
+
+namespace Escuela.Mappers
+{
+    public class EnrollmentMapper : EntityTypeConfiguration<Enrollment>
+    {
+        public EnrollmentMapper()
+        {
+            this.ToTable("Enrollments");
+
+            this.HasKey(e => e.Id);
+            this.Property(e => e.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            this.Property(e => e.Id).IsRequired();
+
+            this.Property(c => c.Description).IsOptional();
+            this.Property(c => c.Description).HasMaxLength(1000);
+
+            this.HasOptional(e => e.Student).WithMany(e => e.Enrollments).Map(s => s.MapKey("StudentID")).WillCascadeOnDelete(false);
+            this.HasOptional(e => e.Course).WithMany(e => e.Enrollments).Map(c => c.MapKey("CourseID")).WillCascadeOnDelete(false);
+        }
+    }
+}

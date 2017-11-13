@@ -9,66 +9,63 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="indexController">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-ng-controller="indexController">
         <div class="container">
             <div class="navbar-header">
-                <button class="btn btn-success navbar-toggle" data-ng-click="navbarExpanded = !navbarExpanded">
-                    <span class="glyphicon glyphicon-chevron-down"></span>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#link-navbar" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#/">Home</a>
+                <a class="navbar-brand" href="#/">Escuela</a>
             </div>
-            <div class="collapse navbar-collapse" data-collapse="!navbarExpanded">
-                <ul class="nav navbar-nav navbar-right">
+            <div class="collapse navbar-collapse" id="link-navbar">
+                <ul class="nav navbar-nav">
                     <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
-                    <li data-ng-hide="!authentication.isAuth"><a href="#/teachers">Teachers</a></li>
+                    <li data-ng-hide="!authentication.isAuth"><a href="#/students">Students</a></li>
                     <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
                     <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
                     <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
                 </ul>
             </div>
         </div>
-    </div>
-    <div class="jumbotron">
-        <div class="container">
-            <div class="page-header text-center">
-                <h1>AngularJS Authentication</h1>
-            </div>
-            <p>This single page application is built using AngularJS, it is using OAuth bearer token authentication, ASP.NET Web API 2, OWIN middleware, and ASP.NET Identity to generate tokens and register users.</p>
-        </div>
-    </div>
+    </nav>
+    <hr />
     <div class="container">
         <div data-ng-view="">
         </div>
     </div>
-    <hr />
-    <div id="footer">
+    <!--
+    <div id="footer" class="navbar-fixed-bottom">
+        <hr />
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <p class="text-muted">Created by Taiseer Joudeh. Twitter: <a target="_blank" href="http://twitter.com/tjoudeh">@tjoudeh</a></p>
-                </div>
-                <div class="col-md-6">
-                    <p class="text-muted">Taiseer Joudeh Blog: <a target="_blank" href="http://bitoftech.net">bitoftech.net</a></p>
+                <div class="col-md-12">
+                    <p class="text-muted">© 2017 <a href="#/">School</a>. All rights reserved. <a href="#/">Terms and Conditions of Use</a> - <a href="#/">Privacy Policy</a> - <a href="#/">General Conditions of Sale</a> - <a href="#/">Legal Notice</a></p>
                 </div>
             </div>
         </div>
     </div>
+    -->
     <!-- 3rd party libraries -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
+    <script src="scripts/angular-route.min.js"></script>
+    <script src="scripts/jquery-1.9.1.min.js"></script>
     <script src="scripts/angular-local-storage.min.js"></script>
     <script src="scripts/loading-bar.min.js"></script>
+    <script src="scripts/bootstrap.min.js"></script>
     <!-- Load app main script -->
     <script src="app/app.js"></script>
     <!-- Load services -->
     <script src="app/services/authInterceptorService.js"></script>
     <script src="app/services/authService.js"></script>
-    <script src="app/services/teachersService.js"></script>
+    <script src="app/services/studentsService.js"></script>
     <!-- Load controllers -->
     <script src="app/controllers/indexController.js"></script>
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/signupController.js"></script>
-    <script src="app/controllers/teachersController.js"></script>
+    <script src="app/controllers/studentsController.js"></script>
 </body>
 </html>
