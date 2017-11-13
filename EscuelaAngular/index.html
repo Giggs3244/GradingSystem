@@ -23,10 +23,12 @@
             <div class="collapse navbar-collapse" id="link-navbar">
                 <ul class="nav navbar-nav">
                     <li data-ng-hide="!authentication.isAuth"><a href="#">Welcome {{authentication.userName}}</a></li>
+                    <li><a href="#/about">About</a></li>
                     <li data-ng-hide="!authentication.isAuth"><a href="#/students">Students</a></li>
+                    <li data-ng-hide="!authentication.isAuth"><a href="#/enrollment">Enrollment</a></li>
                     <li data-ng-hide="!authentication.isAuth"><a href="" data-ng-click="logOut()">Logout</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/login">Login</a></li>
-                    <li data-ng-hide="authentication.isAuth"> <a href="#/signup">Sign Up</a></li>
+                    <li data-ng-hide="authentication.isAuth"><a href="#/login">Login</a></li>
+                    <li data-ng-hide="authentication.isAuth"><a href="#/signup">Sign Up</a></li>
                 </ul>
             </div>
         </div>
@@ -61,11 +63,13 @@
     <script src="app/services/authInterceptorService.js"></script>
     <script src="app/services/authService.js"></script>
     <script src="app/services/studentsService.js"></script>
+    <script src="app/services/enrollmentService.js"></script>
     <!-- Load controllers -->
     <script src="app/controllers/indexController.js"></script>
     <script src="app/controllers/homeController.js"></script>
     <script src="app/controllers/loginController.js"></script>
     <script src="app/controllers/signupController.js"></script>
     <script src="app/controllers/studentsController.js"></script>
+    <script src="app/controllers/enrollmentController.js"></script>
 </body>
 </html>

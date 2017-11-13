@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using Escuela.Entities;
+using System.Data.SqlClient;
 
 namespace Escuela
 {
@@ -96,7 +97,7 @@ namespace Escuela
             throw new NotImplementedException();
         }
 
-        public Enrollment GetEnrollmentByStudentAndCourse(int studentId, int courseId)
+        public Enrollment GetEnrollmentByCourse(int courseId)
         {
             throw new NotImplementedException();
         }
@@ -118,38 +119,24 @@ namespace Escuela
                     .AsQueryable();
         }
 
-        public int EnrollStudentInCourse(int studentId, int courseId, Enrollment enrollment)
+        public int EnrollStudentInCourse(int studentIdParam, int courseIdParam, String descriptionParam)
         {
             try
             {
-                if (_ctx.Enrollments.Any(e => e.Course.Id == courseId && e.Student.Id == studentId))
+                if (_ctx.Enrollments.Any(e => e.Course.Id == courseIdParam && e.Student.Id == studentIdParam))
                 {
                     return 2;
                 }
 
-                _ctx.Database.ExecuteSqlCommand("INSERT INTO Enrollments VALUES (@p0, @p1, @p2)",
-                    enrollment.Description, courseId.ToString(), studentId.ToString());
+                var studentId = new SqlParameter("@student_id", studentIdParam);
+                var courseId = new SqlParameter("@course_id", courseIdParam);
+                var description = new SqlParameter("@description", descriptionParam);
+
+                _ctx.Database.ExecuteSqlCommand("EXEC sp_enrollment_insert @student_id , @course_id , @description", studentId, courseId, description);
 
                 return 1;
             }
-            catch (System.Data.Entity.Validation.DbEntityValidationException dbex)
-            {
-                foreach (var eve in dbex.EntityValidationErrors)
-                {
-                    string line = string.Format("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
-                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
-
-                    foreach (var ve in eve.ValidationErrors)
-                    {
-                        line = string.Format("- Property: \"{0}\", Error: \"{1}\"",
-                            ve.PropertyName, ve.ErrorMessage);
-
-                    }
-                }
-                return 0;
-
-            }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return 0;
             }

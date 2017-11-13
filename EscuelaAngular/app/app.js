@@ -22,6 +22,15 @@ app.config(function ($routeProvider) {
         templateUrl: "/app/views/student.html"
     });
 
+    $routeProvider.when("/enrollment", {
+        controller: "enrollmentController",
+        templateUrl: "/app/views/enrollment.html"
+    });
+
+    $routeProvider.when("/about", {
+        templateUrl: "/app/views/about.html"
+    });
+
     $routeProvider.otherwise({ redirectTo: "/home" });
 });
 

@@ -1,0 +1,58 @@
+﻿<div class="row" data-ng-hide="courseLoad || studentLoad || load">
+    <div class="col-md-offset-2 col-md-8">
+        <h2 class="form-enrollment-heading">Enrollment</h2>
+        <div data-ng-hide="messageGood == ''" class="alert alert-success">
+            {{messageGood}}
+        </div>
+        <form class="form-enrollment" role="form" novalidate name="formEnrollment" id="formEnrollment">
+            <div class="form-group">
+                <label for="course">Course</label>
+                <select class="form-control" name="course" id="course" data-ng-model="enrollment.course" data-ng-options="course.name for course in courses" required>
+                    <option value=''>-- choose a course --</option>
+                </select>
+            </div>
+            <div class="alert alert-danger" role="alert" data-ng-show="formEnrollment.course.$error.required && !formEnrollment.course.$pristine || formEnrollment.$submitted && formEnrollment.course.$error.required">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Course is required
+            </div>
+            <div class="form-group">
+                <label for="student">Student</label>
+                <select class="form-control" name="student" id="student" data-ng-model="enrollment.student" data-ng-options="student.firstName for student in students" required>
+                    <option value=''>-- choose a student --</option>
+                </select>
+            </div>
+            <div class="alert alert-danger" role="alert" data-ng-show="formEnrollment.student.$error.required && !formEnrollment.student.$pristine || formEnrollment.$submitted && formEnrollment.student.$error.required">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                Student is required
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea class="form-control" id="description" name="description" placeholder="Description..." data-ng-model="enrollment.description" maxlength="1000"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg" data-ng-click="submit(formEnrollment)">Enroll Student</button>
+        </form>
+    </div>
+</div>
+<div class="row" data-ng-show="!courseLoad && !studentLoad && !load">
+    <div class="col-md-offset-2 col-md-8 sectionError">
+        <div data-ng-hide="messageCourse == ''" class="alert alert-danger">
+            {{messageCourse}}
+        </div>
+        <div data-ng-hide="messageStudent == ''" class="alert alert-danger">
+            {{messageStudent}}
+        </div>
+        <div data-ng-hide="message == ''" class="alert alert-danger">
+            {{message}}
+        </div>
+        <div data-ng-hide="messageCourse == '' || messageStudent == '' || message == ''">
+            <button data-ng-click="reload()" type="button" class="btn btn-primary btn-lg">Try again</button>
+        </div>
+    </div>
+</div>
+<div class="row" data-ng-show="courseLoad || studentLoad || load">
+    <div class="col-md-offset-5 col-md-8">
+        <h2 class="form-enrollment-heading">Loading...</h2>
+    </div>
+</div>

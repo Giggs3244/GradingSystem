@@ -16,13 +16,13 @@ namespace Escuela
 
         Course GetCourse(int courseId);
 
-        Enrollment GetEnrollmentByStudentAndCourse(int studentId, int courseId);
+        Enrollment GetEnrollmentByCourse(int courseId);
         bool disableEnrollment(int enrollmentId);
 
         bool SaveAll();
 
         IQueryable<Student> GetAllStudents();
         IQueryable<Course> GetAllCourses();
-        int EnrollStudentInCourse(int studentId, int courseId, Enrollment enrollment);
+        int EnrollStudentInCourse(int studentId, int courseId, String description);
     }
 }
