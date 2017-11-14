@@ -27,7 +27,7 @@ namespace Escuela.Providers
 
                 if (user == null)
                 {
-                    context.SetError("invalid_grant", "El nombre de usuario o la constraseña son incorrectos.");
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
                     return;
                 }
             }
