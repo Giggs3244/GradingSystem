@@ -12,7 +12,7 @@ app.controller('loginController', ['$scope', '$location', 'authService', functio
 
         authService.login($scope.loginData).then(function (response) {
 
-            $location.path('/teachers');
+            $location.path('/students');
 
         },
          function (err) {
