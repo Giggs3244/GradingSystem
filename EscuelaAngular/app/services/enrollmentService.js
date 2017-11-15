@@ -32,6 +32,20 @@ app.factory('enrollmentService', ['$http', '$q', function ($http, $q) {
 
     };
 
+    var _getEnrolledStudentsInCourse = function (courseId) {
+
+        var deferred = $q.defer();
+
+        return $http.get(serviceBase + 'api/enrollment/get/' + courseId).success(function (response) {
+            deferred.resolve(response);
+        }).error(function (err, status) {
+            deferred.reject(err);
+        });
+
+        return deferred.promise;
+
+    };
+
     var _postEnrollment = function (enrollment) {
 
         var deferred = $q.defer();
@@ -52,6 +66,7 @@ app.factory('enrollmentService', ['$http', '$q', function ($http, $q) {
     enrollmentServiceFactory.getStudents = _getStudents;
     enrollmentServiceFactory.getCourses = _getCourses;
     enrollmentServiceFactory.postEnrollment = _postEnrollment;
+    enrollmentServiceFactory.getEnrolledStudentsInCourse = _getEnrolledStudentsInCourse;
 
     return enrollmentServiceFactory;
 

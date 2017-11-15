@@ -21,6 +21,25 @@ namespace Escuela.Controllers
         }
 
         [Authorize]
+        [Route("get/{id:int}")]
+        // GET api/<controller>/5
+        public HttpResponseMessage Get(int id)
+        {
+            try
+            {
+                IQueryable<Student> students = _repo.GetEnrolledStudentsInCourse(id);
+
+                if (students == null) Request.CreateErrorResponse(HttpStatusCode.BadRequest, generalErrorMessages.StudentsNotFound);
+                                
+                return Request.CreateResponse(HttpStatusCode.OK, students.ToList());
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+        }
+
+        [Authorize]
         [Route("post/{studentId:int}/{courseId:int}")]
         public HttpResponseMessage Post(int studentId, int courseId, HttpRequestMessage request)
         {

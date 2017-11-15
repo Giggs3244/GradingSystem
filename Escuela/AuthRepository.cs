@@ -146,5 +146,13 @@ namespace Escuela
         {
             return _ctx.SaveChanges() > 0;
         }
+
+        public IQueryable<Student> GetEnrolledStudentsInCourse(int courseId)
+        {
+            return _ctx.Students
+                    .Include("Enrollments")
+                    .Where(c => c.Enrollments.Any(s => s.Course.Id == courseId))
+                    .AsQueryable();
+        }
     }
 }

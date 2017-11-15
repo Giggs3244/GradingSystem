@@ -17,6 +17,7 @@ namespace Escuela
         Course GetCourse(int courseId);
 
         Enrollment GetEnrollmentByCourse(int courseId);
+        IQueryable<Student> GetEnrolledStudentsInCourse(int courseId);
         bool disableEnrollment(int enrollmentId);
 
         bool SaveAll();
